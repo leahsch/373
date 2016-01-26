@@ -11,7 +11,6 @@ list_t* insert_sorted(list_t* head, list_t* new_element) {
 	assert(head != NULL);
 	assert(new_element != NULL);
 	list_t* new_place = head;
-	list_t* new_next;
 	if(head->index >= new_element->index){
 		new_element->next = head;
 		head = new_element;
@@ -20,9 +19,8 @@ list_t* insert_sorted(list_t* head, list_t* new_element) {
 		while (new_place->next != NULL && new_element->index >= new_place->next->index){
 			new_place = new_place->next;
 		}
-		new_next = new_place->next;
 		new_place->next = new_element;
-		new_element->next = new_next;
+		new_element->next = new_place->next;
 	}
 	return head;
 }
